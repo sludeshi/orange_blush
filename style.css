@@ -1,0 +1,126 @@
+/* Orange Blush Salon and Barber. Mobile-first, no frameworks. */
+
+/* Design tokens: change colours and fonts here */
+:root{
+  --ink:#14161a; --ink-2:#1e2127; --orange:#ff7a2f; --paper:#f3f0ea;
+  --violet:#5b52f0; --sun:#f6d23c; --text:#f4f2ee; --muted:#b9bcc4;
+  --radius:14px;
+  --head:"Fraunces",Georgia,serif;
+  --body:"DM Sans",system-ui,sans-serif;
+  --wrap:min(1120px,92vw);
+}
+
+*{box-sizing:border-box;margin:0}
+html{scroll-behavior:smooth;scroll-padding-top:72px}
+body{font:400 1rem/1.6 var(--body);background:var(--ink);color:var(--text)}
+img,video{display:block;max-width:100%}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--sun);outline-offset:3px}
+.wrap{width:var(--wrap);margin-inline:auto}
+section{padding:4rem 0}
+h1,h2,h3{font-family:var(--head);line-height:1.1}
+h2{font-size:clamp(1.8rem,4.5vw,2.8rem);margin-bottom:.75rem}
+h3{font-size:1.35rem;margin-bottom:.75rem}
+.lead{max-width:56ch;color:var(--muted);margin-bottom:2rem}
+
+/* Buttons */
+.btn{display:inline-block;padding:.8rem 1.5rem;border-radius:999px;font-weight:700;text-decoration:none;text-align:center;
+  background:var(--orange);color:var(--ink);border:2px solid var(--orange);transition:transform .15s}
+.btn:hover{transform:translateY(-2px)}
+.btn.ghost{background:transparent;color:inherit;border-color:currentColor}
+.btn.dark{background:var(--ink);border-color:var(--ink);color:#fff}
+
+/* Light sections */
+.light{background:var(--paper);color:var(--ink)}
+.light .lead{color:#4a4d55}
+
+/* Header and navigation: logo sits in the centre */
+.site-header{position:sticky;top:0;z-index:20;background:var(--ink);border-bottom:1px solid #2a2e36}
+.site-header nav{width:var(--wrap);margin-inline:auto;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;min-height:64px}
+.logo{grid-column:2;grid-row:1;text-align:center;text-decoration:none;color:var(--orange);
+  font-family:var(--head);font-weight:700;font-size:1.25rem;line-height:1.1}
+.logo small{display:block;font:500 .72rem var(--body);color:var(--muted);letter-spacing:.04em}
+.menu-btn{grid-column:1;grid-row:1;justify-self:start;background:none;border:1px solid #3a3f49;color:inherit;
+  border-radius:999px;padding:.4rem .9rem;font:inherit;cursor:pointer}
+.menu{display:none;position:absolute;inset:100% 0 auto 0;background:var(--ink-2);padding:1rem 4vw 1.5rem}
+.menu.open{display:block}
+.menu ul{list-style:none;padding:0}
+.menu a{display:block;padding:.7rem 0;text-decoration:none}
+.menu .btn{display:block;margin-top:.75rem;padding:.8rem 1.5rem}
+
+@media (min-width:860px){
+  .menu-btn{display:none}
+  .menu,.menu.open{display:contents}
+  .menu ul{display:flex;gap:1.75rem;align-items:center;grid-row:1}
+  .menu .left{grid-column:1}
+  .menu .right{grid-column:3;justify-content:flex-end}
+  .menu a{padding:0}
+  .menu .btn{display:inline-block;margin:0;padding:.55rem 1.1rem}
+}
+
+/* Hero */
+.hero{padding:2.5rem 0 4rem}
+.hero .wrap{display:grid;gap:2.5rem;align-items:center}
+.hero h1{font-size:clamp(2.4rem,8vw,4.6rem);margin-bottom:1rem}
+.actions{display:flex;flex-wrap:wrap;gap:.75rem;margin-bottom:1.25rem}
+.status{color:var(--muted);font-size:.95rem}
+.hero-media{position:relative;background:var(--orange);padding:1.5rem;border-radius:var(--radius)}
+.frame{background:#fff;color:var(--ink);padding:.6rem .6rem 0;transform:rotate(-2deg);box-shadow:0 14px 30px rgba(0,0,0,.35)}
+.frame video{width:100%;aspect-ratio:4/5;object-fit:cover;background:#2a2e36}
+.frame figcaption{padding:.8rem .4rem;font-family:var(--head);font-weight:700}
+.sticker{position:absolute;top:-14px;right:10px;z-index:2;background:var(--sun);color:var(--ink);
+  font-weight:700;font-size:.9rem;padding:.55rem .9rem;border-radius:12px;transform:rotate(6deg)}
+@media (min-width:860px){.hero .wrap{grid-template-columns:1.1fr .9fr}}
+
+/* Services */
+.groups{display:grid;gap:2rem}
+.group ul{list-style:none;padding:0;display:grid;gap:.9rem}
+.group li{border-left:4px solid var(--orange);padding-left:.9rem}
+.group strong{display:block}
+.group span{color:#4a4d55;font-size:.95rem}
+@media (min-width:860px){.groups{grid-template-columns:repeat(3,1fr)}}
+
+/* Gallery */
+.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:.75rem}
+.shot{position:relative;aspect-ratio:1;border:0;padding:0;border-radius:var(--radius);overflow:hidden;
+  cursor:zoom-in;background:linear-gradient(135deg,var(--ink-2),#2d3138)}
+.shot::before{content:attr(data-label);position:absolute;inset:0;display:grid;place-items:center;color:var(--muted)}
+.shot img{position:relative;z-index:1;width:100%;height:100%;object-fit:cover}
+.shot img.missing{visibility:hidden}
+@media (min-width:700px){.grid{grid-template-columns:repeat(3,1fr)}}
+
+dialog{border:0;background:transparent;max-width:92vw;max-height:92vh;padding:0;margin:auto}
+dialog::backdrop{background:rgba(0,0,0,.85)}
+dialog img{max-width:92vw;max-height:80vh;object-fit:contain;border-radius:var(--radius)}
+dialog .close{display:block;margin:0 0 .6rem auto;background:var(--orange);color:var(--ink);border:0;
+  border-radius:999px;padding:.4rem 1rem;font:700 .95rem var(--body);cursor:pointer}
+
+/* Price list */
+.price-group{max-width:640px;margin-bottom:2rem}
+.price{list-style:none;padding:0}
+.price li{display:flex;align-items:baseline;gap:.75rem;padding:.55rem 0;border-bottom:1px solid #d8d3c8}
+.price b{margin-left:auto}
+
+/* Review band */
+.review{background:var(--orange);color:var(--ink)}
+.review .lead{color:var(--ink)}
+.stars{font-size:2rem;letter-spacing:.2rem;margin-bottom:.5rem}
+
+/* Contact */
+.contact{display:grid;gap:2.5rem}
+.details{list-style:none;padding:0;margin-bottom:1.5rem;display:grid;gap:.6rem}
+.details strong{display:inline-block;min-width:6rem}
+.details a{color:var(--orange)}
+.hours div{display:flex;justify-content:space-between;gap:1rem;padding:.6rem 0;border-bottom:1px solid #2a2e36}
+.hours dt{font-weight:700}
+@media (min-width:860px){.contact{grid-template-columns:1.2fr .8fr}}
+
+footer{padding:1.5rem 0 5.5rem;border-top:1px solid #2a2e36;color:var(--muted);font-size:.9rem}
+
+/* Floating WhatsApp button */
+.fab{position:fixed;right:1rem;bottom:1rem;z-index:15;box-shadow:0 8px 20px rgba(0,0,0,.4)}
+
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  .btn{transition:none}
+}
