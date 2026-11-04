@@ -2,7 +2,7 @@
 
 /* 1. Edit your details here. Everything on the site reads from this block. */
 const CONFIG = {
-  phone: "2547990496725", // digits only, with country code (no + or spaces)
+  phone: "+254 799 496725", // digits only, with country code (no + or spaces)
   email: "orangeblushke@gmail.com",
   reviewUrl: "https://search.google.com/local/writereview?placeid=YOUR_PLACE_ID",
   mapsUrl: "https://www.google.com/maps/search/?api=1&query=Orange+Blush+Salon+and+Barber+Tuala",
@@ -10,7 +10,7 @@ const CONFIG = {
 };
 
 /* Opening hours in 24h decimals. 0 = Sunday ... 6 = Saturday. */
-const HOURS = { 0:[8,20.5], 1:[12,20.5], 2:[8,20.5], 3:[8,20.5], 4:[8,20.5], 5:[8,20.5], 6:[8,20.5] };
+const HOURS = { 0: [8, 20.5], 1: [12, 20.5], 2: [8, 20.5], 3: [8, 20.5], 4: [8, 20.5], 5: [8, 20.5], 6: [8, 20.5] };
 
 /* 2. Fill in links (WhatsApp, phone, email, review, map) */
 const setLinks = (selector, href) =>
@@ -43,7 +43,7 @@ function updateStatus() {
     timeZone: "Africa/Nairobi", weekday: "short", hour: "numeric", minute: "numeric", hourCycle: "h23"
   }).formatToParts(new Date());
   const get = type => parts.find(p => p.type === type).value;
-  const day = ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"].indexOf(get("weekday"));
+  const day = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"].indexOf(get("weekday"));
   const now = Number(get("hour")) + Number(get("minute")) / 60;
   const [open, close] = HOURS[day];
   const fmt = h => {
